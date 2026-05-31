@@ -1,7 +1,7 @@
 return {
     {
         'mfussenegger/nvim-dap',
-        keys = { -- 同之前，保持懒加载
+        keys = {
             { '<F9>', mode = 'n' }, -- 切换断点（最常用）
             { '<leader>d', mode = 'n' }, -- 切换断点
         },
@@ -12,8 +12,11 @@ return {
         config = function()
             local dap = require('dap')
             local dapui = require('dapui')
+
             -- ==================== 主题颜色（tokyonight） ====================
+
             local colors = require('tokyonight.colors').setup()
+
             -- ==================== 调试标记符号及高亮 ====================
             local signs = {
                 { name = 'DapBreakpoint', text = '●', hl = 'DapBreakpoint' },
@@ -43,6 +46,7 @@ return {
                     numhl = sign.hl,
                 })
             end
+
             -- 与 tokyonight 主题完美匹配的高亮
             vim.api.nvim_set_hl(0, 'DapBreakpoint', {
                 fg = colors.red,
@@ -52,13 +56,17 @@ return {
             vim.api.nvim_set_hl(0, 'DapStopped', { fg = colors.green, bg = colors.bg_highlight, bold = true })
             vim.api.nvim_set_hl(0, 'DapLogPoint', { fg = colors.blue, bold = true })
             vim.api.nvim_set_hl(0, 'DapBreakpointRejected', { fg = colors.dark5, bold = true })
+
             -- ==================== LLDB (codelldb) 适配器 ====================
+
             dap.adapters.lldb = {
                 type = 'executable',
                 command = vim.fn.expand('~/.config/nvim/tools/codelldb/extension/adapter/codelldb'),
                 name = 'lldb',
             }
+
             -- ==================== C / C++ ====================
+
             local lldb_launch = {
                 name = 'Launch',
                 type = 'lldb',
@@ -72,55 +80,9 @@ return {
             }
             dap.configurations.c = { lldb_launch }
             dap.configurations.cpp = { lldb_launch }
-            -- ==================== Rust 专用智能配置 ====================
-            dap.configurations.rust = {
-                {
-                    name = 'Launch (Cargo)',
-                    type = 'lldb',
-                    request = 'launch',
-                    program = function()
-                        -- 后台自动构建
-                        vim.fn.jobstart({ 'cargo', 'build' }, { detach = true })
-                        -- 获取 cargo metadata
-                        local metadata_json = vim.json.decode(
-                            table.concat(vim.fn.systemlist('cargo metadata --format-version=1 --no-deps'), '')
-                        )
-                        local target_dir = metadata_json.target_directory
-                        -- 关键：找到当前缓冲区文件所属的 package
-                        local current_file = vim.fn.expand('%:p') -- 当前文件绝对路径
-                        local current_package_name = nil
-                        for _, pkg in ipairs(metadata_json.packages) do
-                            for _, target in ipairs(pkg.targets) do
-                                -- 如果 target 有 src_path，且当前文件路径包含该 src_path，则属于这个 package
-                                if target.src_path and string.find(current_file, target.src_path, 1, true) then
-                                    -- 如果是 bin 类型（可执行），优先用它
-                                    if vim.tbl_contains(target.kind, 'bin') then
-                                        current_package_name = pkg.name
-                                        goto found
-                                    end
-                                end
-                            end
-                        end
-                        ::found::
-                        if not current_package_name then
-                            -- 保底：如果没找到，用当前目录名
-                            current_package_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
-                        end
-                        return target_dir .. '/debug/' .. current_package_name
-                    end,
-                    cwd = '${workspaceFolder}',
-                    stopOnEntry = false,
-                    args = function()
-                        -- 可选：支持传入运行时参数
-                        local input = vim.fn.input('Args: ', '')
-                        return vim.split(input, ' ')
-                    end,
-                    postRunCommands = {
-                        'process handle SIGPIPE -n true -p true -s false',
-                    }, -- 忽略管道信号
-                },
-            }
+
             -- ==================== dap-ui 界面配置 ====================
+
             dapui.setup({
                 layouts = {
                     {
@@ -154,6 +116,7 @@ return {
                     scopes = { expand = { '<CR>', 'o' } },
                 },
             })
+
             -- 调试会话开始时自动打开 UI，结束时自动关闭
             dap.listeners.before.attach.dapui_config = function()
                 dapui.open()
@@ -169,6 +132,7 @@ return {
             end
 
             -- ==================== DAP 快捷键绑定 ====================
+
             local nmap = require('utils.keymap').nmap
             -- 鼠标支持
             nmap('<2-LeftMouse>', "<cmd>lua require('dapui').eval()<CR>", '双击变量弹出值')

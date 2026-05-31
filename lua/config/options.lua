@@ -122,7 +122,7 @@ end
 vim.opt.mouse = 'a' -- 全模式启动鼠标
 vim.opt.laststatus = 3 -- 全局统一状态栏
 vim.opt.winborder = 'rounded' -- 窗口边框样式
--- vim.opt.winbar = '%f %m'
+vim.opt.winbar = '%f %m'
 
 vim.opt.splitright = true -- 新窗口默认右侧分割
 vim.opt.splitbelow = true -- 新窗口默认下方分割

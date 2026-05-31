@@ -44,3 +44,24 @@ vim.api.nvim_create_autocmd('FileType', {
         end
     end,
 })
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    group = global_autocmd_group,
+    desc = '禁用 dap-ui 的窗口 winbar',
+    pattern = '*',
+    callback = function()
+        -- 'dapui_scopes',
+        -- 'dapui_breakpoints',
+        -- 'dapui_stacks',
+        -- 'dapui_watches',
+        -- 'dapui_repl',
+        -- 'dapui_console',
+
+        -- 'dap-repl',
+
+        local ft = vim.bo.filetype
+        if ft == 'dap-repl' then
+            vim.opt_local.winbar = ''
+        end
+    end,
+})
