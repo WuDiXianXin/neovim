@@ -1,6 +1,9 @@
 local global_autocmd_group = require('utils.autocmd').global_autocmd_group
 
-vim.api.nvim_create_autocmd('TextYankPost', {
+local api = vim.api
+local autocmd = api.nvim_create_autocmd
+
+autocmd('TextYankPost', {
     group = global_autocmd_group,
     desc = '复制文本后高亮提示',
     callback = function()
@@ -9,15 +12,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
+autocmd({ 'BufReadPost' }, {
     group = global_autocmd_group,
     desc = '打开文件自动恢复上次光标位置 + 展开折叠',
     callback = function()
-        vim.api.nvim_exec2('silent! normal! g`"zv', { output = false })
+        api.nvim_exec2('silent! normal! g`"zv', { output = false })
     end,
 })
 
-vim.api.nvim_create_autocmd('BufEnter', {
+autocmd('BufEnter', {
     group = global_autocmd_group,
     desc = '禁用新行自动延续注释格式',
     callback = function()
@@ -25,7 +28,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
     group = global_autocmd_group,
     desc = 'Markview: 清空 foldtext 避免插件冲突',
     pattern = 'markdown',
@@ -34,7 +37,7 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
     group = global_autocmd_group,
     desc = '为除 Markdown 外的文件类型启用自定义折叠文本',
     pattern = '*',
@@ -45,23 +48,23 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-vim.api.nvim_create_autocmd('BufWinEnter', {
-    group = global_autocmd_group,
-    desc = '禁用 dap-ui 的窗口 winbar',
-    pattern = '*',
-    callback = function()
-        -- 'dapui_scopes',
-        -- 'dapui_breakpoints',
-        -- 'dapui_stacks',
-        -- 'dapui_watches',
-        -- 'dapui_repl',
-        -- 'dapui_console',
-
-        -- 'dap-repl',
-
-        local ft = vim.bo.filetype
-        if ft == 'dap-repl' then
-            vim.opt_local.winbar = ''
-        end
-    end,
-})
+-- autocmd('BufWinEnter', {
+--     group = global_autocmd_group,
+--     desc = '禁用 dap-ui 的窗口 winbar',
+--     pattern = '*',
+--     callback = function()
+--         -- 'dapui_scopes',
+--         -- 'dapui_breakpoints',
+--         -- 'dapui_stacks',
+--         -- 'dapui_watches',
+--         -- 'dapui_repl',
+--         -- 'dapui_console',
+--
+--         -- 'dap-repl',
+--
+--         local ft = vim.bo.filetype
+--         if ft == 'dap-repl' then
+--             vim.opt_local.winbar = ''
+--         end
+--     end,
+-- })

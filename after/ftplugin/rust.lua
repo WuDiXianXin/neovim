@@ -11,15 +11,6 @@ nmap('K', function()
     vim.cmd.RustLsp({ 'hover', 'actions' })
 end, 'Rust: 悬浮信息 + 动作')
 
--- ===================== 调试 =====================
-nmap('<leader>dd', function()
-    vim.cmd.RustLsp('debuggables')
-end, 'Rust: 调试。')
-
-nmap('<leader>dD', function()
-    vim.cmd.RustLsp({ 'debuggables', bang = true })
-end, 'Rust: 运行上一个调试。')
-
 -- ===================== 运行 =====================
 nmap('<leader>rr', function()
     vim.cmd.RustLsp('runnables')

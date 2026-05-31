@@ -12,27 +12,29 @@ end, '打开/关闭位置列表')
 
 nmap('<leader>lg', ':lvimgrep', '精准导航搜索 → 位置列表')
 
-nmap('K', vim.lsp.buf.hover, '显示悬浮文档')
-nmap('grd', vim.lsp.buf.definition, '跳转定义')
-nmap('grD', vim.lsp.buf.declaration, '跳转声明')
-nmap('grr', vim.lsp.buf.references, '查找所有引用')
-nmap('gri', vim.lsp.buf.implementation, '跳转实现')
-nmap('grn', vim.lsp.buf.rename, '全局重命名')
-nmap('gra', vim.lsp.buf.code_action, '代码动作')
-nmap('grt', vim.lsp.buf.type_definition, '跳转类型定义')
-nmap('<leader>lf', vim.lsp.buf.format, '格式化当前文件')
+local buf = vim.lsp.buf
+nmap('K', buf.hover, '显示悬浮文档')
+nmap('grd', buf.definition, '跳转定义')
+nmap('grD', buf.declaration, '跳转声明')
+nmap('grr', buf.references, '查找所有引用')
+nmap('gri', buf.implementation, '跳转实现')
+nmap('grn', buf.rename, '全局重命名')
+nmap('gra', buf.code_action, '代码动作')
+nmap('grt', buf.type_definition, '跳转类型定义')
+nmap('<leader>lf', buf.format, '格式化当前文件')
 
 -- 诊断
+local severity = vim.diagnostic.severity
 vim.diagnostic.config({
     virtual_text = true, -- 在行尾显示错误信息
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = ' ',
-            [vim.diagnostic.severity.WARN] = ' ',
-            [vim.diagnostic.severity.INFO] = ' ',
-            [vim.diagnostic.severity.HINT] = ' ',
+            [severity.ERROR] = ' ',
+            [severity.WARN] = ' ',
+            [severity.INFO] = ' ',
+            [severity.HINT] = ' ',
         },
-        severity = { min = vim.diagnostic.severity.HINT },
+        severity = { min = severity.HINT },
     },
     underline = true,
     update_in_insert = false, -- 插入模式下不实时更新

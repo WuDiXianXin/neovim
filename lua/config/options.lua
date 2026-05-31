@@ -1,40 +1,42 @@
 -- ===================== 全局变量 =====================
+local g = vim.g
+local opt = vim.opt
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+g.mapleader = ' '
+g.maplocalleader = ' '
 
-vim.g.have_nerd_font = true
+g.have_nerd_font = true
 
-vim.g.loaded_netrw = 0
-vim.g.loaded_netrwPlugin = 0
+g.loaded_netrw = 0
+g.loaded_netrwPlugin = 0
 
-vim.g.loaded_node_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_python3_provider = 0
+g.loaded_node_provider = 0
+g.loaded_ruby_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_python3_provider = 0
 
 -- ===================== 基础渲染 =====================
 
-vim.opt.termguicolors = true -- 开启真彩色，保证颜色/透明正常
-vim.opt.background = 'dark' -- 适配深色终端
+opt.termguicolors = true -- 开启真彩色，保证颜色/透明正常
+opt.background = 'dark' -- 适配深色终端
 -- 延迟重绘，减少渲染压力，
 -- 缺点：搜索内容时会导致固定序列，无法确定第几个结果
--- vim.opt.lazyredraw = true
-vim.opt.synmaxcol = 500 -- 限制语法高亮列数，提高性能
+-- opt.lazyredraw = true
+opt.synmaxcol = 500 -- 限制语法高亮列数，提高性能
 
 -- ===================== 行号与光标 =====================
 
-vim.opt.number = true -- 显示绝对行号
-vim.opt.relativenumber = true -- 显示相对行号
-vim.opt.signcolumn = 'yes' -- 始终显示符号列
-vim.opt.cursorline = true -- 高亮光标行
-vim.opt.cursorcolumn = true -- 高亮光标列
-vim.opt.scrolloff = 8 -- 垂直保留 8 行缓冲
+opt.number = true -- 显示绝对行号
+opt.relativenumber = true -- 显示相对行号
+opt.signcolumn = 'yes' -- 始终显示符号列
+opt.cursorline = true -- 高亮光标行
+opt.cursorcolumn = true -- 高亮光标列
+opt.scrolloff = 8 -- 垂直保留 8 行缓冲
 
 -- ===================== 空白字符显示 =====================
 
-vim.opt.list = true
-vim.opt.listchars = {
+opt.list = true
+opt.listchars = {
     tab = '» ', -- Tab 显示为 » + 空格
     trail = '·', -- 行尾空格显示为 ·
     nbsp = '␣', -- 非断行空格（比如全角空格、&nbsp;）
@@ -46,38 +48,39 @@ vim.opt.listchars = {
 
 -- ===================== 搜索配置 =====================
 
-vim.opt.ignorecase = true -- 忽略大小写
-vim.opt.smartcase = true -- 输入大写时精准匹配
-vim.opt.hlsearch = true -- 搜索结果高亮
-vim.opt.incsearch = true -- 增量搜索（实时匹配）
-vim.opt.inccommand = 'split' -- 预览替换效果
+opt.ignorecase = true -- 忽略大小写
+opt.smartcase = true -- 输入大写时精准匹配
+opt.hlsearch = true -- 搜索结果高亮
+opt.incsearch = true -- 增量搜索（实时匹配）
+opt.inccommand = 'split' -- 预览替换效果
 
 -- ===================== 文本与缩进 =====================
 
--- vim.opt.cc = '80'
--- vim.opt.colorcolumn = '120'
--- vim.opt.backup = false
--- vim.opt.writebackup = false
-vim.opt.clipboard = 'unnamedplus'
+-- opt.cc = '80'
+-- opt.colorcolumn = '120'
+-- opt.backup = false
+-- opt.writebackup = false
+opt.clipboard = 'unnamedplus'
 vim.scriptencoding = 'utf-8' -- 脚本编码为 UTF-8
-vim.opt.encoding = 'utf-8' -- 内部编码为 UTF-8
-vim.opt.fileencoding = 'utf-8' -- 文件编码为 UTF-8
-vim.opt.whichwrap = 'bs<>[]hl' -- 光标跨行移动控制
--- vim.opt.wrap = false            -- 关闭文本换行，默认开启
-vim.opt.linebreak = true -- 按照「单词边界」换行
-vim.opt.breakat = ' \t;:,!?.' -- 长行折行分隔点控制
-vim.opt.breakindent = true -- 折行保持缩进
-vim.opt.autoindent = true -- 新建行自动缩进
-vim.opt.expandtab = true -- 将 tab 转为空格
-vim.opt.tabstop = 4 -- 一个 tab 对应 4 个空格
-vim.opt.softtabstop = 4 -- 编辑模式下 tab 键的空格数
-vim.opt.shiftwidth = 4 -- 缩进/取消缩进的空格数
-vim.opt.undofile = true -- 持久化撤销历史
-vim.opt.updatetime = 250 -- 自动触发时间频率
+opt.encoding = 'utf-8' -- 内部编码为 UTF-8
+opt.fileencoding = 'utf-8' -- 文件编码为 UTF-8
+opt.whichwrap = 'bs<>[]hl' -- 光标跨行移动控制
+-- opt.wrap = false            -- 关闭文本换行，默认开启
+opt.linebreak = true -- 按照「单词边界」换行
+opt.breakat = ' \t;:,!?.' -- 长行折行分隔点控制
+opt.breakindent = true -- 折行保持缩进
+opt.autoindent = true -- 新建行自动缩进
+opt.expandtab = true -- 将 tab 转为空格
+opt.tabstop = 4 -- 一个 tab 对应 4 个空格
+opt.softtabstop = 4 -- 编辑模式下 tab 键的空格数
+opt.shiftwidth = 4 -- 缩进/取消缩进的空格数
+opt.undofile = true -- 持久化撤销历史
+opt.swapfile = false -- 保存前临时复制一份
+opt.updatetime = 250 -- 自动触发时间频率
 
 -- ===================== 文件对比 =====================
 
-vim.opt.diffopt = {
+opt.diffopt = {
     'internal', -- 使用内置 diff 算法
     'filler', -- 显示填充行
     'closeoff', -- 自动关闭只剩一个 diff 窗口时退出 diff 模式
@@ -90,12 +93,12 @@ vim.opt.diffopt = {
 
 -- ===================== 代码折叠 =====================
 
-vim.opt.foldenable = true -- 启用折叠（关闭则用 zA 等命令也无法折叠）
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldlevel = 99 -- 默认不折叠
-vim.opt.foldlevelstart = 99
-vim.opt.foldminlines = 1 -- 避免空折叠
+opt.foldenable = true -- 启用折叠（关闭则用 zA 等命令也无法折叠）
+opt.foldmethod = 'expr'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldlevel = 99 -- 默认不折叠
+opt.foldlevelstart = 99
+opt.foldminlines = 1 -- 避免空折叠
 
 -- 自定义折叠样式
 function _G.custom_foldtext()
@@ -119,14 +122,14 @@ end
 
 -- ===================== 窗口 =====================
 
-vim.opt.mouse = 'a' -- 全模式启动鼠标
-vim.opt.laststatus = 3 -- 全局统一状态栏
-vim.opt.winborder = 'rounded' -- 窗口边框样式
-vim.opt.winbar = '%f %m'
+opt.mouse = 'a' -- 全模式启动鼠标
+opt.laststatus = 3 -- 全局统一状态栏
+opt.winborder = 'rounded' -- 窗口边框样式
+opt.winbar = '%f %m'
 
-vim.opt.splitright = true -- 新窗口默认右侧分割
-vim.opt.splitbelow = true -- 新窗口默认下方分割
+opt.splitright = true -- 新窗口默认右侧分割
+opt.splitbelow = true -- 新窗口默认下方分割
 
 -- ===================== 底部栏 =====================
 
--- vim.opt.showmode = false
+-- opt.showmode = false

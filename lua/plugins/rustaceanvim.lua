@@ -22,21 +22,21 @@ return {
 
                 local cfg = require('rustaceanvim.config')
                 return {
-                    server = {
-                        cmd = { 'rust-analyzer' },
-
-                        default_settings = {
-                            ['rust-analyzer'] = {
-                                check = { command = 'clippy' },
-                                cargo = { allFeatures = true },
-                                inlayHints = {
-                                    bindingModeHints = { enable = true },
-                                    closureReturnTypeHints = { enable = 'always' },
-                                    lifetimeElisionHints = { enable = 'always' },
-                                },
-                            },
-                        },
-                    },
+                    -- server = {
+                    --     cmd = { 'rust-analyzer' },
+                    --
+                    --     default_settings = {
+                    --         ['rust-analyzer'] = {
+                    --             check = { command = 'clippy' },
+                    --             cargo = { allFeatures = true },
+                    --             inlayHints = {
+                    --                 bindingModeHints = { enable = true },
+                    --                 closureReturnTypeHints = { enable = 'always' },
+                    --                 lifetimeElisionHints = { enable = 'always' },
+                    --             },
+                    --         },
+                    --     },
+                    -- },
                     dap = {
                         adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
                     },
