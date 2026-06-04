@@ -11,6 +11,7 @@ return {
                 },
 
                 -- ==================== Section ====================
+
                 sections = {
                     -- lualine_a = { 'mode' },
                     lualine_b = {
@@ -33,6 +34,7 @@ return {
                 inactive_sections = {},
 
                 -- -- ==================== Winbar ====================
+
                 -- winbar = {
                 --     lualine_c = {
                 --         {
@@ -56,6 +58,7 @@ return {
                 -- },
 
                 -- -- ==================== Tabline ====================
+
                 tabline = {
                     lualine_a = { 'tabs' },
                     lualine_c = { 'buffers' },
