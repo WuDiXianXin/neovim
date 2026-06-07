@@ -28,6 +28,17 @@ autocmd('BufEnter', {
     end,
 })
 
+autocmd('LspAttach', {
+    group = global_autocmd_group,
+    desc = '禁用所有 lsp 自带的语法高亮',
+    callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client and client.server_capabilities.semanticTokensProvider then
+            client.server_capabilities.semanticTokensProvider = nil
+        end
+    end,
+})
+
 autocmd('FileType', {
     group = global_autocmd_group,
     desc = 'Markview: 清空 foldtext 避免插件冲突',

@@ -8,6 +8,8 @@ return {
             'saghen/blink.lib',
             -- Blink 补全美化菜单
             'xzbdmw/colorful-menu.nvim',
+            -- Snippets 源
+            'rafamadriz/friendly-snippets',
         },
         build = function()
             -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
@@ -19,10 +21,10 @@ return {
                 keymap = {
                     preset = 'none',
 
-                    -- Ctrl+空格：只显示 lsp 补全
+                    -- Ctrl+空格：只显示 snippets 补全
                     ['<C-space>'] = {
                         function(cmp)
-                            cmp.show({ providers = { 'lsp' } })
+                            cmp.show({ providers = { 'snippets' } })
                         end,
                     },
 
@@ -82,9 +84,9 @@ return {
                     },
                 },
 
-                fuzzy = {
-                    implementation = 'rust',
-                },
+                snippets = { preset = 'default' },
+
+                fuzzy = { implementation = 'rust' },
             })
         end,
     },

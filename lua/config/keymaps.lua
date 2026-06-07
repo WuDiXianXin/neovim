@@ -1,7 +1,7 @@
 local nmap = require('utils.keymap').nmap
 local vmap = require('utils.keymap').vmap
 local xmap = require('utils.keymap').xmap
-local nxmap = require('utils.keymap').nxmap
+-- local nxmap = require('utils.keymap').nxmap
 local imap = require('utils.keymap').imap
 
 -- ==================== 基础设置 ====================
@@ -12,7 +12,7 @@ nmap('<CR>', '<Nop>', '禁用回车默认功能')
 nmap('<leader>;', ':!', '快速进入 :!')
 
 nmap('<leader>r', '*``cgn', '替换光标所在单词（按 . 继续下一个）')
-nmap('<leader>R', ':%s/', '快速提供替换命令')
+nmap('<leader>R', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>]], '在全文替换光标所在单词')
 
 -- ==================== 搜索与预览 ====================
 
@@ -32,14 +32,16 @@ nmap('<leader>gdo', '<cmd>diffoff<CR>', '取消对比')
 
 -- ==================== 文本与文件操作 ====================
 
+xmap('p', [["_dP]], '粘贴（黑洞版）')
+
 imap('kj', '<Esc>', '快速退出插入模式')
 imap('jk', '<Esc>', '快速退出插入模式')
 
 xmap('<', '<gv', '视觉模式减少缩进（保留选中）')
 xmap('>', '>gv', '视觉模式增加缩进（保留选中）')
 
-nxmap('j', "v:count == 0 ? 'gj' : 'j'", '视觉行向下移动（有计数则跳转物理行）', { expr = true })
-nxmap('k', "v:count == 0 ? 'gk' : 'k'", '视觉行向上移动（有计数则跳转物理行）', { expr = true })
+-- nxmap('j', "v:count == 0 ? 'gj' : 'j'", '视觉行向下移动（有计数则跳转物理行）', { expr = true })
+-- nxmap('k', "v:count == 0 ? 'gk' : 'k'", '视觉行向上移动（有计数则跳转物理行）', { expr = true })
 
 nmap('<A-k>', '<cmd>m .-2<CR>==', '当前行上移并自动缩进')
 nmap('<A-j>', '<cmd>m .+1<CR>==', '当前行下移并自动缩进')

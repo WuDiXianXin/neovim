@@ -58,14 +58,12 @@ opt.inccommand = 'split' -- 预览替换效果
 
 -- opt.cc = '80'
 -- opt.colorcolumn = '120'
--- opt.backup = false
--- opt.writebackup = false
 opt.clipboard = 'unnamedplus'
 vim.scriptencoding = 'utf-8' -- 脚本编码为 UTF-8
 opt.encoding = 'utf-8' -- 内部编码为 UTF-8
 opt.fileencoding = 'utf-8' -- 文件编码为 UTF-8
 opt.whichwrap = 'bs<>[]hl' -- 光标跨行移动控制
--- opt.wrap = false            -- 关闭文本换行，默认开启
+opt.wrap = false -- 关闭文本换行
 opt.linebreak = true -- 按照「单词边界」换行
 opt.breakat = ' \t;:,!?.' -- 长行折行分隔点控制
 opt.breakindent = true -- 折行保持缩进
@@ -74,8 +72,10 @@ opt.expandtab = true -- 将 tab 转为空格
 opt.tabstop = 4 -- 一个 tab 对应 4 个空格
 opt.softtabstop = 4 -- 编辑模式下 tab 键的空格数
 opt.shiftwidth = 4 -- 缩进/取消缩进的空格数
-opt.undofile = true -- 持久化撤销历史
+opt.undofile = false -- 持久化撤销历史
 opt.swapfile = false -- 保存前临时复制一份
+opt.backup = false
+opt.writebackup = false
 opt.updatetime = 250 -- 自动触发时间频率
 
 -- ===================== 文件对比 =====================
@@ -126,6 +126,8 @@ opt.mouse = 'a' -- 全模式启动鼠标
 opt.laststatus = 3 -- 全局统一状态栏
 opt.winborder = 'rounded' -- 窗口边框样式
 opt.winbar = '%f %m'
+
+-- opt.cmdheight = 0
 
 opt.splitright = true -- 新窗口默认右侧分割
 opt.splitbelow = true -- 新窗口默认下方分割

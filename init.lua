@@ -6,6 +6,9 @@ require('config.options')
 require('config.keymaps')
 require('config.autocmds')
 
+-- 启动 UI2
+require('vim._core.ui2').enable({})
+
 -- LSP 配置（必须先加载）
 require('config.lsp')
 

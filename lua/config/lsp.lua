@@ -133,7 +133,7 @@ vim.lsp.config('clangd', {
 
     capabilities = {
         textDocument = {
-            semanticTokens = { multilineTokenSupport = true },
+            -- semanticTokens = { multilineTokenSupport = true },
             inlayHint = {
                 dynamicRegistration = true,
             },
@@ -147,7 +147,7 @@ vim.lsp.config('clangd', {
 
     settings = {
         clangd = {
-            fallbackFlags = { '-std=c++23' },
+            -- fallbackFlags = { '-std=c++23' },
             index = {
                 onChange = true, -- 文件修改时立即更新索引
             },
@@ -166,72 +166,4 @@ vim.lsp.config('clangd', {
     },
 })
 
---- pyright 配置
-vim.lsp.config('pyright', {
-    cmd = { 'pyright-langserver', '--stdio' },
-    filetypes = { 'python' },
-    root_markers = {
-        'pyrightconfig.json',
-        'pyproject.toml',
-        'setup.py',
-        'setup.cfg',
-        'requirements.txt',
-        'Pipfile',
-        '.git',
-    },
-    settings = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-                diagnosticMode = 'openFilesOnly',
-            },
-        },
-    },
-})
-
--- ================== 统一处理 LspAttach ==================
-vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('lsp_attach_keymaps', { clear = true }),
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if not client then
-            return
-        end
-
-        local bufnr = args.buf
-
-        -- ================== Pyright 专用命令 ==================
-        if client.name == 'pyright' then
-            -- Organize Imports
-            vim.api.nvim_buf_create_user_command(bufnr, 'LspPyrightOrganizeImports', function()
-                local params = {
-                    command = 'pyright.organizeimports',
-                    arguments = { vim.uri_from_bufnr(bufnr) },
-                }
-                client:request('workspace/executeCommand', params, nil, bufnr)
-            end, { desc = 'Pyright: Organize Imports' })
-
-            -- Set Python Path
-            vim.api.nvim_buf_create_user_command(bufnr, 'LspPyrightSetPythonPath', function(command)
-                local path = command.args
-                if client.settings then
-                    client.settings.python =
-                        vim.tbl_deep_extend('force', client.settings.python or {}, { pythonPath = path })
-                else
-                    client.config.settings =
-                        vim.tbl_deep_extend('force', client.config.settings or {}, { python = { pythonPath = path } })
-                end
-                client:notify('workspace/didChangeConfiguration', { settings = nil })
-            end, {
-                desc = 'Pyright: Set Python Path',
-                nargs = 1,
-                complete = 'file',
-            })
-        end
-
-        -- 你未来可以在这里继续添加其他 LSP 的特殊处理
-    end,
-})
-
-vim.lsp.enable({ 'lua_ls', 'clangd', 'pyright' })
+vim.lsp.enable({ 'lua_ls', 'clangd' })

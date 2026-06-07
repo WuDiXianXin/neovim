@@ -11,9 +11,6 @@ return {
             'nvim-neotest/nvim-nio',
         },
         config = function()
-            local dap = require('dap')
-            -- local dapui = require('dapui')
-
             -- ==================== 主题颜色（tokyonight） ====================
 
             local colors = require('tokyonight.colors').setup()
@@ -60,6 +57,8 @@ return {
 
             -- ==================== LLDB (codelldb) 适配器 ====================
 
+            local dap = require('dap')
+
             dap.adapters.lldb = {
                 type = 'executable',
                 command = vim.fn.expand('~/.config/nvim/tools/codelldb/extension/adapter/codelldb'),
@@ -81,56 +80,6 @@ return {
             }
             dap.configurations.c = { lldb_launch }
             dap.configurations.cpp = { lldb_launch }
-
-            -- ==================== dap-ui 界面配置 ====================
-
-            -- dapui.setup({
-            --     layouts = {
-            --         {
-            --             elements = {
-            --                 { id = 'scopes', size = 0.25 }, -- 变量作用域
-            --                 { id = 'breakpoints', size = 0.25 }, -- 断点列表
-            --                 { id = 'stacks', size = 0.25 }, -- 调用栈
-            --                 { id = 'watches', size = 0.25 }, -- 监视表达式
-            --             },
-            --             size = 0.4,
-            --             position = 'left',
-            --         },
-            --         {
-            --             elements = { 'repl', 'console' },
-            --             size = 0.4,
-            --             position = 'bottom',
-            --         },
-            --     },
-            --     floating = {
-            --         border = 'rounded',
-            --         max_width = 0.6, -- 限制浮动窗口宽度
-            --         max_height = 0.6, -- 限制高度
-            --     },
-            --     controls = { enabled = true },
-            --     icons = { -- 美化展开/折叠图标
-            --         expanded = '▾',
-            --         collapsed = '▸',
-            --         current_frame = '▸',
-            --     },
-            --     element_mappings = { -- Scopes 面板回车展开变量
-            --         scopes = { expand = { '<CR>', 'o' } },
-            --     },
-            -- })
-
-            -- 调试会话开始时自动打开 UI，结束时自动关闭
-            -- dap.listeners.before.attach.dapui_config = function()
-            --     dapui.open()
-            -- end
-            -- dap.listeners.before.launch.dapui_config = function()
-            --     dapui.open()
-            -- end
-            -- dap.listeners.before.event_terminated.dapui_config = function()
-            --     dapui.close()
-            -- end
-            -- dap.listeners.before.event_exited.dapui_config = function()
-            --     dapui.close()
-            -- end
 
             -- ==================== DAP 快捷键绑定 ====================
 
@@ -172,26 +121,7 @@ return {
         'igorlfs/nvim-dap-view',
         lazy = true,
         config = function()
-            local adapter_to_filetypes = {
-                debugpy = { 'python' },
-                ['pwa-node'] = { 'javascript', 'typescript' },
-                emmylua = { 'lua' },
-            }
-
             require('dap-view').setup({
-                follow_tab = function(adapter)
-                    local cur_tab_wins = vim.api.nvim_tabpage_list_wins(0)
-
-                    local adapter_fitetypes = adapter_to_filetypes[adapter]
-
-                    return vim.iter(cur_tab_wins or {}):any(
-                        ---@param win integer
-                        function(win)
-                            local buf = vim.api.nvim_win_get_buf(win)
-                            return vim.tbl_contains(adapter_fitetypes or {}, vim.bo[buf].filetype)
-                        end
-                    )
-                end,
                 winbar = {
                     show_keymap_hints = false,
                     sections = {
@@ -211,55 +141,12 @@ return {
                     },
                 },
                 switchbuf = 'usetab,newtab',
-                keymaps = {
-                    threads = {
-                        filter = 's',
-                        toggle_subtle_frames = 'i',
-                    },
-                    watches = {
-                        edit_expression = 'x',
-                    },
-                },
                 windows = {
                     size = 0.6,
-                    position = function(prev)
-                        local wins = vim.api.nvim_tabpage_list_wins(0)
-
-                        if
-                            vim.iter(wins):find(function(win)
-                                return vim.w[win].dapview_win_term
-                            end)
-                        then
-                            return prev
-                        end
-
-                        local function layout_has_vsplit(layout)
-                            local type = layout[1]
-                            if type == 'leaf' then
-                                return false
-                            elseif type == 'row' then
-                                return true
-                            else -- "col"
-                                ---@cast layout[2] (vim.fn.winlayout.branch|vim.fn.winlayout.leaf)[]
-                                for _, child in ipairs(layout[2]) do
-                                    if layout_has_vsplit(child) then
-                                        return true
-                                    end
-                                end
-                                return false
-                            end
-                        end
-
-                        local vsplit = layout_has_vsplit(vim.fn.winlayout())
-
-                        return vsplit and 'below' or 'right'
-                    end,
+                    position = 'right',
                     terminal = {
-                        hide = { 'pwa-node', 'pwa-chrome' },
                         size = 0.5,
-                        position = function(pos)
-                            return pos == 'below' and 'right' or 'below'
-                        end,
+                        position = 'right',
                     },
                 },
             })
