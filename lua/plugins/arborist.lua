@@ -9,7 +9,22 @@ return {
             install_popular = false, -- 启动时自动安装常用语言解析器
 
             -- 额外在启动时安装的语言
-            ensure_installed = { 'regex', 'rust', 'toml', 'c', 'cpp', 'bash', 'fish' }, -- 示例
+            ensure_installed = {
+                'c',
+                'cpp',
+                'rust',
+                'markdown',
+                'markdown_inline',
+
+                'bash',
+                'fish',
+
+                'regex',
+
+                'kdl',
+                'yaml',
+                'toml',
+            },
 
             -- 禁用某些功能的 TS 支持
             disable = {
