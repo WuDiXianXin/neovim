@@ -4,13 +4,23 @@ return {
         'folke/tokyonight.nvim',
         lazy = false,
         priority = 1000,
+        -- config = function()
+        -- moon, night, storm, day
+        -- vim.cmd([[colorscheme tokyonight-moon]])
+        -- end,
+    },
+    {
+        'catppuccin/nvim',
+        lazy = false,
+        name = 'catppuccin',
+        priority = 1000,
         config = function()
-            -- tokyonight-night
-            -- tokyonight-storm
-            -- tokyonight-day
-            -- tokyonight-moon
+            require('catppuccin').setup({
+                flavour = 'mocha',
+            })
 
-            vim.cmd([[colorscheme tokyonight-moon]])
+            -- latte, frappe, macchiato, mocha
+            vim.cmd([[colorscheme catppuccin-mocha]])
         end,
     },
 }
