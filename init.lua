@@ -7,7 +7,12 @@ require('config.keymaps')
 require('config.autocmds')
 
 -- 启动 UI2
-require('vim._core.ui2').enable({})
+require('vim._core.ui2').enable({
+    enable = true,
+    msg = {
+        targets = 'msg',
+    },
+})
 
 -- LSP 配置（必须先加载）
 require('config.lsp')

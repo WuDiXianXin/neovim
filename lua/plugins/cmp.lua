@@ -18,7 +18,9 @@ return {
         end,
         config = function()
             require('blink.cmp').setup({
+                -- 仅 i 模式 键盘映射
                 keymap = {
+                    -- 不使用预设
                     preset = 'none',
 
                     -- Ctrl+空格：只显示 snippets 补全
@@ -27,6 +29,10 @@ return {
                             cmp.show({ providers = { 'snippets' } })
                         end,
                     },
+
+                    -- 前后进行 snippets 选择
+                    ['<Tab>'] = { 'snippet_forward', 'fallback' },
+                    ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
                     -- 上下键选择补全项
                     ['<Up>'] = { 'select_prev', 'fallback' },
