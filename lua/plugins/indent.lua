@@ -4,11 +4,8 @@ return {
     event = 'BufReadPost',
     config = function()
         require('blink.indent').setup({
-            static = {
-                char = '▏',
-            },
             scope = {
-                char = '▏',
+                highlights = { 'BlinkIndentGreen' },
             },
         })
     end,
