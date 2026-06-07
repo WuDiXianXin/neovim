@@ -2,14 +2,14 @@
 return {
     'saghen/blink.indent',
     event = 'BufReadPost',
-    -- config = function ()
-    --     require('blink.indent').setup({
-    --     static = {
-    --         char = '▏',
-    --     },
-    --     scope = {
-    --         char = '▏',
-    --     }
-    -- })
-    -- end
+    config = function()
+        require('blink.indent').setup({
+            static = {
+                char = '▏',
+            },
+            scope = {
+                char = '▏',
+            },
+        })
+    end,
 }
