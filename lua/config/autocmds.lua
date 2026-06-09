@@ -79,3 +79,21 @@ autocmd('FileType', {
 --         end
 --     end,
 -- })
+
+autocmd('FileType', {
+    group = global_autocmd_group,
+    desc = '启动 lua LSP 服务',
+    pattern = { 'lua' },
+    callback = function()
+        vim.lsp.enable({ 'lua_ls' })
+    end,
+})
+
+autocmd('FileType', {
+    group = global_autocmd_group,
+    desc = '启动 clangd LSP 服务',
+    pattern = { 'c', 'cpp' },
+    callback = function()
+        vim.lsp.enable({ 'clangd' })
+    end,
+})
