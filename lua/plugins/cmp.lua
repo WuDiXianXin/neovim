@@ -62,7 +62,9 @@ return {
                 },
 
                 completion = {
-                    documentation = { auto_show = true },
+                    documentation = {
+                        auto_show = true,
+                    },
                     menu = {
                         draw = {
                             columns = { { 'kind_icon' }, { 'label', gap = 1 } },

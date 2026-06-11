@@ -30,7 +30,7 @@ opt.number = true -- 显示绝对行号
 opt.relativenumber = true -- 显示相对行号
 opt.signcolumn = 'yes' -- 始终显示符号列
 opt.cursorline = true -- 高亮光标行
-opt.cursorcolumn = true -- 高亮光标列
+-- opt.cursorcolumn = true -- 高亮光标列
 opt.scrolloff = 8 -- 垂直保留 8 行缓冲
 
 -- ===================== 空白字符显示 =====================
@@ -125,7 +125,8 @@ end
 opt.mouse = 'a' -- 全模式启动鼠标
 opt.laststatus = 3 -- 全局统一状态栏
 opt.winborder = 'rounded' -- 窗口边框样式
-opt.winbar = '%f %m'
+
+-- opt.winbar = '%f %m'
 
 -- opt.cmdheight = 0
 
