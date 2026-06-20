@@ -7,7 +7,7 @@ local imap = require('utils.keymap').imap
 -- ==================== 基础设置 ====================
 
 nmap(' ', '<Nop>', 'Leader')
-nmap('<CR>', '<Nop>', '禁用回车默认功能')
+-- nmap('<CR>', '<Nop>', '禁用回车默认功能')
 
 nmap('<leader>;', ':!', '快速进入 :!')
 
