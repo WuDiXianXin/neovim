@@ -31,7 +31,8 @@ return {
                 vim.api.nvim_set_hl(0, group, { bg = 'none' })
             end
 
-            vim.api.nvim_set_hl(0, 'MsgArea', { fg = '#eceff4', bg = 'none' })
+            vim.api.nvim_set_hl(0, 'MsgArea', { fg = '#c8b0d4', bg = 'none' })
+            vim.api.nvim_set_hl(0, 'Comment', { fg = '#b0d4d4', bg = 'none' })
         end,
     },
 }

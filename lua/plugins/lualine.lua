@@ -4,9 +4,9 @@ return {
         event = 'UIEnter',
         config = function()
             local custom_theme = require('lualine.themes.tokyonight')
-            -- custom_theme.normal.c.fg = '#eceff4'
+            custom_theme.normal.c.fg = '#c8b0d4'
             custom_theme.normal.c.bg = 'none'
-            -- custom_theme.inactive.c.fg = '#eceff4'
+            custom_theme.inactive.c.fg = '#b0d4d4'
             custom_theme.inactive.c.bg = 'none'
 
             require('lualine').setup({
@@ -21,16 +21,12 @@ return {
                 -- ==================== Section ====================
 
                 sections = {
-                    -- lualine_a = { 'mode' },
                     lualine_b = {
                         { 'branch', icon = '' },
                         { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } },
                     },
                     lualine_c = {
-                        {
-                            'lsp_status',
-                            color = { fg = '#eceff4' },
-                        },
+                        'lsp_status',
                         {
                             'diagnostics',
                             sources = { 'nvim_diagnostic' },
@@ -38,26 +34,15 @@ return {
                         },
                     },
                     lualine_x = {
-                        {
-                            'encoding',
-                            color = { fg = '#eceff4' },
-                        },
-                        {
-                            'fileformat',
-                            color = { fg = '#eceff4' },
-                        },
-                        {
-                            'filetype',
-                            color = { fg = '#eceff4' },
-                        },
+                        'encoding',
+                        'fileformat',
+                        'filetype',
                     },
-                    -- lualine_y = { 'progress' },
-                    -- lualine_z = { 'location' }
                 },
 
                 inactive_sections = {},
 
-                -- -- ==================== Winbar ====================
+                -- ==================== Winbar ====================
 
                 winbar = {
                     lualine_c = {
@@ -66,7 +51,6 @@ return {
                             file_status = true, -- [关键设置] 启用文件状态显示
                             path = 1, -- 可选: 0 = 仅文件名, 1 = 相对路径, 2 = 绝对路径
                             symbols = { modified = '●', readonly = '', unnamed = 'No Name' },
-                            color = { fg = '#eceff4' },
                         },
                     },
                 },
@@ -78,12 +62,11 @@ return {
                             file_status = true,
                             path = 1,
                             symbols = { modified = '●', readonly = '', unnamed = 'No Name' },
-                            color = { fg = '#a0a0a0' },
                         },
                     },
                 },
 
-                -- -- ==================== Tabline ====================
+                -- ==================== Tabline ====================
 
                 tabline = {
                     lualine_a = {
@@ -96,8 +79,8 @@ return {
                         {
                             'buffers',
                             buffers_color = {
-                                active = { fg = '#eceff4' },
-                                inactive = { fg = '#a0a0a0' },
+                                active = { fg = '#c8b0d4' },
+                                inactive = { fg = '#b0d4d4' },
                             },
                         },
                     },
