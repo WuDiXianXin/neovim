@@ -10,9 +10,23 @@ return {
 
             -- 额外在启动时安装的语言
             ensure_installed = {
+                'lua',
+                'vim',
+                'vimdoc',
+                'query',
+
                 'c',
                 'cpp',
                 'rust',
+                'go',
+                'python',
+
+                'html',
+                'css',
+                'javascript',
+                'typescript',
+                'tsx',
+
                 'markdown',
                 'markdown_inline',
 
@@ -21,9 +35,16 @@ return {
 
                 'regex',
 
+                'ini',
                 'kdl',
                 'yaml',
+                'json',
                 'toml',
+
+                'diff',
+                'gitcommit',
+                'gitignore',
+                'gitattributes',
             },
 
             -- 禁用某些功能的 TS 支持
