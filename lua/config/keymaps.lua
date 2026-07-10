@@ -9,6 +9,8 @@ local imap = require('utils.keymap').imap
 nmap(' ', '<Nop>', 'Leader')
 -- nmap('<CR>', '<Nop>', '禁用回车默认功能')
 
+nmap('<leader>la', ':Lazy<CR>', '打开 Lazy 面板')
+
 nmap('<leader>;', ':!', '快速进入 :!')
 
 nmap('<leader>r', '*``cgn', '替换光标所在单词（按 . 继续下一个）')
