@@ -28,6 +28,11 @@ nmap('n', 'nzzzv', '下一个搜索结果并居中展开')
 nmap('N', 'Nzzzv', '上一个搜索结果并居中展开')
 
 nmap('<leader>tl', '<cmd>set list!<CR>', '切换空白字符显示')
+nmap('<leader>tt', function()
+    require('utils.transparent').transparent = not require('utils.transparent').transparent
+    vim.cmd('Lazy reload tokyonight.nvim')
+    vim.cmd('Lazy reload lualine.nvim')
+end, '切换透明')
 
 nmap('<leader>gdt', '<cmd>diffthis<CR>', '对比文件')
 nmap('<leader>gdo', '<cmd>diffoff<CR>', '取消对比')
