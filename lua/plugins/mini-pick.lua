@@ -2,9 +2,10 @@
 return {
     {
         'nvim-mini/mini.pick',
-        keys = {
-            { '<leader>f', mode = 'n' },
-        },
+        event = 'UIEnter',
+        -- keys = {
+        --     { '<leader>f', mode = 'n' },
+        -- },
         config = function()
             require('mini.pick').setup()
             local nmap = require('utils.keymap').nmap
