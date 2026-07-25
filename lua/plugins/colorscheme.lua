@@ -5,8 +5,11 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            -- require('tokyonight').setup()
-            require('tokyonight').setup({ transparent = true })
+            if require('utils.transparent').transparent then
+                require('tokyonight').setup({ transparent = true })
+            else
+                require('tokyonight').setup()
+            end
 
             -- moon, night, storm, day
             vim.cmd([[colorscheme tokyonight-moon]])
@@ -38,7 +41,9 @@ return {
                 vim.api.nvim_set_hl(0, 'Comment', { fg = '#b0d4d4', bg = 'none' })
             end
 
-            transparent_theme()
+            if require('utils.transparent').transparent then
+                transparent_theme()
+            end
         end,
     },
 }
