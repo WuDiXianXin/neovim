@@ -21,13 +21,13 @@ nmap('<leader>rR', function()
 end, 'Rust: 重跑上一个 Runnable')
 
 -- ===================== 测试 =====================
-nmap('<leader>tt', function()
-    vim.cmd.RustLsp('testables')
-end, 'Rust: 选择并运行测试')
-
-nmap('<leader>tT', function()
-    vim.cmd.RustLsp({ 'testables', bang = true })
-end, 'Rust: 重跑上一个测试')
+-- nmap('<leader>tt', function()
+--     vim.cmd.RustLsp('testables')
+-- end, 'Rust: 选择并运行测试')
+--
+-- nmap('<leader>tT', function()
+--     vim.cmd.RustLsp({ 'testables', bang = true })
+-- end, 'Rust: 重跑上一个测试')
 
 -- ===================== 宏 & 代码结构 =====================
 nmap('<leader>em', function()
