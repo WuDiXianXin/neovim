@@ -14,7 +14,7 @@ return {
         build = function()
             -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
             -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
-            require('blink.cmp').build():pwait()
+            require('blink.cmp').build():pwait(120000)
         end,
         config = function()
             require('blink.cmp').setup({

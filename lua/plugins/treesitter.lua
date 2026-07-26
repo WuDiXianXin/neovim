@@ -16,6 +16,7 @@ return {
                 'query',
 
                 'c',
+                -- 'c3',
                 'cpp',
                 'rust',
                 'go',
@@ -27,8 +28,8 @@ return {
                 'typescript',
                 'tsx',
 
-                'markdown',
-                'markdown_inline',
+                -- 'markdown',
+                -- 'markdown_inline',
 
                 'bash',
                 'fish',
