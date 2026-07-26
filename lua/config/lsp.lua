@@ -26,7 +26,7 @@ nmap('<leader>lf', buf.format, '格式化当前文件')
 -- 诊断
 local severity = vim.diagnostic.severity
 vim.diagnostic.config({
-    virtual_text = true, -- 在行尾显示错误信息
+    virtual_text = false, -- 在行尾显示错误信息
     signs = {
         text = {
             [severity.ERROR] = ' ',
@@ -36,7 +36,7 @@ vim.diagnostic.config({
         },
         severity = { min = severity.HINT },
     },
-    underline = true,
+    underline = false,
     update_in_insert = false, -- 插入模式下不实时更新
     severity_sort = true, -- 按严重程度排序
     float = { -- 悬浮窗口样式
@@ -48,13 +48,6 @@ vim.diagnostic.config({
 
 -- 内联提示（Inline Hint） - 强烈推荐打开
 vim.lsp.inlay_hint.enable(true) -- Neovim 0.10+
-
--- 自动悬浮窗口（鼠标悬停或光标停留时显示文档）
-vim.api.nvim_create_autocmd('CursorHold', {
-    callback = function()
-        vim.diagnostic.open_float(nil, { focusable = false })
-    end,
-})
 
 -- ================== LSP 配置 ==================
 -- lua_ls 配置

@@ -4,6 +4,8 @@ local xmap = require('utils.keymap').xmap
 -- local nxmap = require('utils.keymap').nxmap
 local imap = require('utils.keymap').imap
 
+-- local tm = require('utils.transparent_theme')
+
 -- ==================== 基础设置 ====================
 
 nmap(' ', '<Nop>', 'Leader')
@@ -29,9 +31,8 @@ nmap('N', 'Nzzzv', '上一个搜索结果并居中展开')
 
 nmap('<leader>tl', '<cmd>set list!<CR>', '切换空白字符显示')
 nmap('<leader>tt', function()
-    require('utils.transparent').transparent = not require('utils.transparent').transparent
+    vim.g.transparent = not vim.g.transparent
     vim.cmd('Lazy reload tokyonight.nvim')
-    vim.cmd('Lazy reload lualine.nvim')
 end, '切换透明')
 
 nmap('<leader>gdt', '<cmd>diffthis<CR>', '对比文件')

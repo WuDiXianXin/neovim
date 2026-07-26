@@ -3,8 +3,15 @@ return {
         'nvim-lualine/lualine.nvim',
         event = 'UIEnter',
         config = function()
+            local custom_theme = require('lualine.themes.tokyonight')
+            custom_theme.normal.c.fg = '#c8b0d4'
+            custom_theme.normal.c.bg = 'none'
+            custom_theme.inactive.c.fg = '#b0d4d4'
+            custom_theme.inactive.c.bg = 'none'
+
             require('lualine').setup({
                 options = {
+                    theme = custom_theme,
                     globalstatus = false, -- 设为 true 则全窗口共用一个 statusline
                     component_separators = { left = '', right = '' },
                     section_separators = { left = '', right = '' },
@@ -67,38 +74,20 @@ return {
                             symbols = { modified = ' ●' },
                         },
                     },
+
                     lualine_c = {
-                        'buffers',
+                        {
+                            'buffers',
+                            buffers_color = {
+                                active = { fg = '#c8b0d4' },
+                                inactive = { fg = '#b0d4d4' },
+                            },
+                        },
                     },
                 },
 
                 extensions = { 'quickfix', 'toggleterm', 'fugitive' },
             })
-
-            if require('utils.transparent').transparent then
-                local custom_theme = require('lualine.themes.tokyonight')
-                custom_theme.normal.c.fg = '#c8b0d4'
-                custom_theme.normal.c.bg = 'none'
-                custom_theme.inactive.c.fg = '#b0d4d4'
-                custom_theme.inactive.c.bg = 'none'
-
-                require('lualine').setup({
-                    options = {
-                        theme = custom_theme,
-                    },
-                    tabline = {
-                        lualine_c = {
-                            {
-                                'buffers',
-                                buffers_color = {
-                                    active = { fg = '#c8b0d4' },
-                                    inactive = { fg = '#b0d4d4' },
-                                },
-                            },
-                        },
-                    },
-                })
-            end
         end,
     },
 }

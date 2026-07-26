@@ -5,11 +5,7 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            if require('utils.transparent').transparent then
-                require('tokyonight').setup({ transparent = true })
-            else
-                require('tokyonight').setup()
-            end
+            require('tokyonight').setup({ transparent = vim.g.transparent })
 
             -- moon, night, storm, day
             vim.cmd([[colorscheme tokyonight-moon]])
@@ -33,15 +29,21 @@ return {
                     'WinbarNC',
                 }
 
+                local fg_overrides = {
+                    MsgArea = '#c8b0d4',
+                    Comment = '#b0d4d4',
+                }
+
                 for _, group in ipairs(groups) do
                     vim.api.nvim_set_hl(0, group, { bg = 'none' })
                 end
 
-                vim.api.nvim_set_hl(0, 'MsgArea', { fg = '#c8b0d4', bg = 'none' })
-                vim.api.nvim_set_hl(0, 'Comment', { fg = '#b0d4d4', bg = 'none' })
+                for group, fg in pairs(fg_overrides) do
+                    vim.api.nvim_set_hl(0, group, { fg = fg, bg = 'none' })
+                end
             end
 
-            if require('utils.transparent').transparent then
+            if vim.g.transparent then
                 transparent_theme()
             end
         end,

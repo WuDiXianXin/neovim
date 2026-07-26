@@ -1,6 +1,9 @@
 -- ===================== 全局变量 =====================
+
 local g = vim.g
 local opt = vim.opt
+
+g.transparent = true
 
 g.mapleader = ' '
 g.maplocalleader = ' '
@@ -119,6 +122,8 @@ function _G.custom_foldtext()
         ' lines folded',
     })
 end
+
+vim.opt.foldtext = 'v:lua.custom_foldtext()'
 
 -- ===================== 窗口 =====================
 
