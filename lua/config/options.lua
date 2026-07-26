@@ -97,8 +97,6 @@ opt.diffopt = {
 -- ===================== 代码折叠 =====================
 
 opt.foldenable = true -- 启用折叠（关闭则用 zA 等命令也无法折叠）
-opt.foldmethod = 'expr'
-opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 opt.foldlevel = 99 -- 默认不折叠
 opt.foldlevelstart = 99
 opt.foldminlines = 1 -- 避免空折叠

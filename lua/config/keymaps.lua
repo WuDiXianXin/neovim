@@ -4,8 +4,6 @@ local xmap = require('utils.keymap').xmap
 -- local nxmap = require('utils.keymap').nxmap
 local imap = require('utils.keymap').imap
 
--- local tm = require('utils.transparent_theme')
-
 -- ==================== 基础设置 ====================
 
 nmap(' ', '<Nop>', 'Leader')

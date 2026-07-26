@@ -53,5 +53,8 @@ return {
                 -- highlight = { 'csv' }, -- 关闭 csv 的高亮
             },
         })
+
+        vim.opt.foldmethod = 'expr'
+        vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     end,
 }
