@@ -36,7 +36,7 @@ vim.diagnostic.config({
         },
         severity = { min = severity.HINT },
     },
-    underline = false,
+    underline = true,
     update_in_insert = false, -- 插入模式下不实时更新
     severity_sort = true, -- 按严重程度排序
     float = { -- 悬浮窗口样式

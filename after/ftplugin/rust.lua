@@ -16,9 +16,9 @@ nmap('<leader>rr', function()
     vim.cmd.RustLsp('runnables')
 end, 'Rust: 选择并运行 Runnable')
 
-nmap('<leader>rR', function()
-    vim.cmd.RustLsp({ 'runnables', bang = true })
-end, 'Rust: 重跑上一个 Runnable')
+-- nmap('<leader>rR', function()
+--     vim.cmd.RustLsp({ 'runnables', bang = true })
+-- end, 'Rust: 重跑上一个 Runnable')
 
 -- ===================== 测试 =====================
 -- nmap('<leader>tt', function()

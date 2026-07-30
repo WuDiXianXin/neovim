@@ -61,7 +61,7 @@ opt.inccommand = 'split' -- 预览替换效果
 
 -- opt.cc = '80'
 -- opt.colorcolumn = '120'
-opt.clipboard = 'unnamedplus'
+opt.clipboard = 'unnamedplus' -- 寄存器 "+ 与系统剪切板互通
 vim.scriptencoding = 'utf-8' -- 脚本编码为 UTF-8
 opt.encoding = 'utf-8' -- 内部编码为 UTF-8
 opt.fileencoding = 'utf-8' -- 文件编码为 UTF-8

@@ -31,13 +31,13 @@ autocmd({ 'BufReadPost' }, {
     end,
 })
 
-autocmd('BufEnter', {
-    group = 'General',
-    desc = '禁用新行自动延续注释格式',
-    callback = function()
-        vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' })
-    end,
-})
+-- autocmd('BufEnter', {
+--     group = 'General',
+--     desc = '禁用新行自动延续注释格式',
+--     callback = function()
+--         vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' })
+--     end,
+-- })
 
 -- LSP 组：语言服务器相关
 autocmd('LspAttach', {
