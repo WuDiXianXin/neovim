@@ -11,7 +11,7 @@ augroup('General', { clear = true })
 augroup('LSP', { clear = true })
 
 -- 3. UI/界面显示组 (UI)
-augroup('UI', { clear = true })
+-- augroup('UI', { clear = true })
 
 -- General 组：通用编辑体验
 autocmd('TextYankPost', {
