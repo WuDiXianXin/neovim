@@ -3,6 +3,7 @@ return {
     {
         'hedyhli/outline.nvim',
         event = 'LspAttach',
+        ft = 'markdown',
         config = function()
             require('outline').setup()
             local nmap = require('utils.keymap').nmap
